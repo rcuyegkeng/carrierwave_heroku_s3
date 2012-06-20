@@ -12,9 +12,14 @@
 
 <p>
   <b>Image:</b>
-  <%= image_tag(@program.image_url) if @program.image? %>   <br/>
-  <%= image_tag(@program.image_url(:tablet)) if @program.image? %>   <br/>
-  <%= image_tag(@program.image_url(:thumb)) if @program.image  %>   <br/>
+  <%= image_tag(@program.image_url) #if @program.image?
+  %>   <br/>
+  <%= image_tag(@program.image_url(:tablet)) #if @program.image?
+  %>   <br/>
+  <%= image_tag(@program.image_url(:tabletsmall)) #if @program.image?
+  %>   <br/>
+  <%= image_tag(@program.image_url(:thumb)) #if @program.image?
+  %>   <br/>
 </p>
 
 <%= link_to 'Edit', edit_program_path(@program) %> |

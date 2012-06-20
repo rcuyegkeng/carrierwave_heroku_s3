@@ -7,12 +7,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
-  # include Sprockets::Helpers::RailsHelper
-  # include Sprockets::Helpers::IsolatedHelper
+  include Sprockets::Helpers::RailsHelper
+  include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  #storage :file
-  storage :fog
+  storage :file
+  #storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -21,12 +21,13 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   # For Rails 3.1+ asset pipeline compatibility:
-  #   # asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+  def default_url
+    # For Rails 3.1+ asset pipeline compatibility:
+    #asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+    asset_path([version_name, "rails.png"].compact.join('_'))
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
+  end
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
@@ -35,8 +36,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # Process the image to a size we like
-  process :resize_to_fit => [800, 800]
+  # Process the image to dimensions we like if the image is bigger than our dimensions. (800x800)
+  process :resize_to_limit => [800, 800]
 
   # Create different versions of your uploaded files:
   version :thumb do
@@ -44,7 +45,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :tablet do
-    process :resize_to_fit => [200, 200]
+    process :resize_to_fit => [130, 130]
+  end
+
+  version :tabletsmall do
+    process :resize_to_fit => [100, 100]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
