@@ -1,1 +1,1 @@
-This rails project is an example of using carrierwave, activerecords, Amazon S3, and Heroku.
+Simple Rails app that uses carrierwave, heroku and s3 to store images.

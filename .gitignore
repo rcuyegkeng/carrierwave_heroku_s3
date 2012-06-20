@@ -13,3 +13,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore the .idea directory. It contains rubymine project information
+/.idea
+/.idea/*
