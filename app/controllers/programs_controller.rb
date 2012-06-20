@@ -47,7 +47,9 @@ class ProgramsController < ApplicationController
     if params[:program][:image]
       @program.image=params[:program][:image]
     else
-      @program.remote_image_url=params[:program][:imageurl]
+      if params[:program][:imageurl] && !params[:program][:imageurl].blank?
+        @program.remote_image_url=params[:program][:imageurl]
+      end
     end
 
 
@@ -71,7 +73,9 @@ class ProgramsController < ApplicationController
     if params[:program][:image]
       @program.image=params[:program][:image]
     else
-      @program.remote_image_url=params[:program][:imageurl]
+      if params[:program][:imageurl] && !params[:program][:imageurl].blank?
+        @program.remote_image_url=params[:program][:imageurl]
+      end
     end
 
 
