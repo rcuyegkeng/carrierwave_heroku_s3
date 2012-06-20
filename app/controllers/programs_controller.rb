@@ -40,7 +40,16 @@ class ProgramsController < ApplicationController
   # POST /programs
   # POST /programs.json
   def create
-    @program = Program.new(params[:program])
+    #@program = Program.new(params[:program])
+    @program = Program.new
+    @program.name=params[:program][:name]
+    @program.imageurl=params[:program][:imageurl]
+    if params[:program][:image]
+      @program.image=params[:program][:image]
+    else
+      @program.remote_image_url=params[:program][:imageurl]
+    end
+
 
     respond_to do |format|
       if @program.save
@@ -57,9 +66,18 @@ class ProgramsController < ApplicationController
   # PUT /programs/1.json
   def update
     @program = Program.find(params[:id])
+    @program.name=params[:program][:name]
+    @program.imageurl=params[:program][:imageurl]
+    if params[:program][:image]
+      @program.image=params[:program][:image]
+    else
+      @program.remote_image_url=params[:program][:imageurl]
+    end
+
 
     respond_to do |format|
-      if @program.update_attributes(params[:program])
+#      if @program.update_attributes(params[:program])
+      if @program.save
         format.html { redirect_to @program, notice: 'Program was successfully updated.' }
         format.json { head :no_content }
       else
